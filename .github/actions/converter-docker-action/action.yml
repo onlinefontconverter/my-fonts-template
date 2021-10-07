@@ -1,0 +1,16 @@
+# action.yml
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  fonts-dir:  # directory where original fonts are stored
+    description: 'directory where original fonts are stored'
+    required: false
+    default: 'fonts'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.fonts-dir }}

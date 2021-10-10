@@ -26,15 +26,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          enable_jekyll: true
-          keep_files: true
           
       # Runs a single command using the runners shell
       - name: Makie webfonts
@@ -43,6 +34,14 @@ jobs:
           fonts-dir: 'fonts'
 
       - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          enable_jekyll: true
+
+
+      - name: Deploy again
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

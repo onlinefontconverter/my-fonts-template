@@ -5,9 +5,18 @@ then
    exit 0
 fi
 
-git branch gh-pages
-git checkout gh-pages
+GIT_REPO_URL=$(git config --get remote.origin.url)
 
-mv ./build/* .
+mkdir .deploy
+cp -R .github/actions/converter-docker-action/public/* .deploy
+cd .deploy
+git init .
+git remote add github $GIT_REPO_URL
+git checkout -b gh-pages
+git add .
+git commit -am "Create gh-pages"
+git push github gh-pages
+cd ..
+rm -rf .deploy
 
-echo "din not."
+echo "gh-pages deployed."

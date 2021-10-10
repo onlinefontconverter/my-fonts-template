@@ -25,15 +25,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Make WebFonts
-        uses: ./.github/actions/converter-docker-action
-        with:
-          fonts-dir: 'fonts'
+      - name: Create gh-pages if not exist
+        run: .github/deploy.sh
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          enable_jekyll: true
+      # Runs a single command using the runners shell
+      # - name: Make WebFonts
+      #   uses: .github/actions/converter-docker-action
+      #   with:
+      #     fonts-dir: 'fonts'
+
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./public
+      #     enable_jekyll: true

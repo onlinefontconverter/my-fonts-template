@@ -24,10 +24,11 @@ git config --global user.name "$username"
 git config --global user.email "$email"
 git remote add pages $repo_uri
 echo "pushing"
-git checkout -b gh-pages
+
 git add .
 git commit -am "Create gh-pages"
-git push pages gh-pages
+git branch -M gh-pages
+git push -u pages gh-pages
 cd ..
 rm -rf .deploy
 

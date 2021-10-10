@@ -11,7 +11,7 @@ repo_uri="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB
 
 echo "Username: $username"
 echo "email: $username"
-echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+echo "repo_uri: $repo_uri"
 
 GIT_REPO_URL=$(git config --get remote.origin.url)
 

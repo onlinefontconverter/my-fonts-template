@@ -33,28 +33,30 @@ echo "Username: $username"
 echo "email: $username"
 echo "repo_uri: $repo_uri"
 
+
+echo "Creating branch gh-pages"
+mkdir .deploy
+cp -R /public/* .deploy
+cd .deploy
+echo "setup git local"
+git init .
+git config --local user.name $username
+git config --local user.email $email
+git remote add pages $repo_uri
+git fetch
 if [ `git branch --list gh-pages` ]
 then
    echo "Branch name gh-pages already exists."
+   git switch gh-pages
 else
-  echo "Creating branch gh-pages"
-  mkdir .deploy
-  cp -R /public/* .deploy
-  cd .deploy
-  echo "setup git local"
-  git init .
-  git config --local user.name $username
-  git config --local user.email $email
-  git remote add pages $repo_uri
-  echo "Adding files"
-  git add .
-  git commit -am "Create gh-pages"
-  git branch -M gh-pages
-  git push -u pages gh-pages
-  cd ..
-  rm -rf .deploy
-  echo "gh-pages deployed."
+    touch index.md
+    git add index.md
+    git commit -am "Create gh-pages"
+    git branch -M gh-pages
+    git push -u pages gh-pages
+    echo "gh-pages deployed."
 fi
+cd ..
 
 echo "Files in $workingDir 1:"
 ls -al
@@ -65,21 +67,12 @@ do
   mkeot $i > $fontDir/verdana.eot
 done
 
-mkdir .deploy
 cd .deploy
 
-echo "setup git local"
-git init .
-git config --local user.name $username
-git config --local user.email $email
-git remote add pages $repo_uri
-git fetch pages
-git switch gh-pages
+git rm -r --cached . # remove old files
 
-git rm -r --cached .
-
-cp -R ../.github/actions/converter-docker-action/public/* ./
-cp -R ../$fontDir/* ./fonts/
+cp -R ../.github/actions/converter-docker-action/public/* ./ #copy static files
+cp -R ../$fontDir/* ./fonts/ # copy generated files
 
 echo "Adding files"
 git add .

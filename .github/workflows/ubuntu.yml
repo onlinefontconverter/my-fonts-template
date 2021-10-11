@@ -25,11 +25,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-       - name: Make WebFonts
-         uses: ./.github/actions/converter-docker-action
-         with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
-           fonts_dir: 'fonts'
+      # Runs a single command using the runners shell
+      - name: Makie webfonts
+        uses: ./.github/actions/converter-docker-action
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fonts_dir: 'fonts'
 
       # - name: Deploy
       #   uses: peaceiris/actions-gh-pages@v3

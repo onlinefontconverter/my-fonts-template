@@ -2,7 +2,11 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  fonts_dir:  # directory where original fonts are stored
+  github_token:
+    description: 'Token used for publish gh-pages'
+    required: true
+    default: 'fonts'
+  fonts_dir:
     description: 'directory where original fonts are stored'
     required: false
     default: 'fonts'
@@ -13,5 +17,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.fonts_dir }}
     - ${{ inputs.github_token }}
+    - ${{ inputs.fonts_dir }}

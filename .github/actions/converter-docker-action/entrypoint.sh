@@ -69,16 +69,6 @@ do
   mkeot $i > $fontDir/verdana.eot
 done
 
-echo "Files in $workingDir 2:"
-ls -al
-echo "Files in $fontDir:"
-ls -al $fontDir
-mv $fontDir/* ./public
-echo "Files in public:"
-ls -al public
-
-
-
 mkdir .deploy
 cd .deploy
 
@@ -91,6 +81,7 @@ git fetch pages
 git switch gh-pages
 
 cp -R ../.github/actions/converter-docker-action/public/* ./
+cp -R ../$fontDir/* ./fonts/
 
 echo "Adding files"
 git add .

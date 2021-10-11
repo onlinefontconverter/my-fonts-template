@@ -4,7 +4,11 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Inputs
 
-## `fonts-dir`
+## `fonts_dir`
+
+**Required** The name of the person to greet. Default `"World"`.
+
+## `github_token`
 
 **Required** The name of the person to greet. Default `"World"`.
 
@@ -18,4 +22,5 @@ The time we greeted you.
 
 uses: actions/hello-world-docker-action@v1
 with:
-  fonts-dir: 'Mona the Octocat'
+  github_token: ${{ secrets.GITHUB_TOKEN }}
+  fonts_dir: 'fonts'

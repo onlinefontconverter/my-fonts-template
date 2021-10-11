@@ -27,16 +27,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create gh-pages if not exist
-        run: .github/deploy.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Runs a single command using the runners shell
-      # - name: Make WebFonts
-      #   uses: .github/actions/converter-docker-action
-      #   with:
-      #     fonts-dir: 'fonts'
+       - name: Make WebFonts
+         uses: .github/actions/converter-docker-action
+         with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           fonts_dir: 'fonts'
 
       # - name: Deploy
       #   uses: peaceiris/actions-gh-pages@v3

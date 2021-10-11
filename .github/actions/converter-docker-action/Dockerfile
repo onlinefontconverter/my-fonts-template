@@ -8,6 +8,7 @@ COPY entrypoint.sh /entrypoint.sh
 COPY all2all.pe /all2all.pe
 COPY samplefonts /samplefonts
 COPY public /public
+COPY scripts /scripts
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]

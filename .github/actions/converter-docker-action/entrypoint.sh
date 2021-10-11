@@ -38,17 +38,14 @@ then
    echo "Branch name gh-pages already exists."
 else
   echo "Creating branch gh-pages"
-
   mkdir .deploy
   cp -R /public/* .deploy
   cd .deploy
-
   echo "setup git local"
   git init .
   git config --local user.name $username
   git config --local user.email $email
   git remote add pages $repo_uri
-
   echo "Adding files"
   git add .
   git commit -am "Create gh-pages"
@@ -56,7 +53,6 @@ else
   git push -u pages gh-pages
   cd ..
   rm -rf .deploy
-
   echo "gh-pages deployed."
 fi
 
@@ -79,6 +75,8 @@ git config --local user.email $email
 git remote add pages $repo_uri
 git fetch pages
 git switch gh-pages
+
+git rm -r --cached .
 
 cp -R ../.github/actions/converter-docker-action/public/* ./
 cp -R ../$fontDir/* ./fonts/

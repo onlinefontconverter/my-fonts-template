@@ -2,22 +2,24 @@
 
 set -eu -o pipefail # -x: is for debugging
 
-echo "Push to branch $INPUT_BRANCH";
-[ -z "${INPUT_GITHUB_TOKEN}" ] && {
+
+[ -z "${1}" ] && {
     echo 'Missing input "github_token: ${{ secrets.GITHUB_TOKEN }}".';
     exit 1;
 };
+github_token=$1
+
+[ -z "${2}" ] && {
+    echo 'Missing input "font_dir: fonts".';
+    exit 1;
+};
+fontDir=$2
 
 while [[ "$PWD" != "/" ]] ; do
   mkdir work && cd work # only when testing local
 done
 
 workingDir=$(pwd)
-fontDir=$1
-github_token=$2
-if [ -z "${VAR}" ]; then
-  fontDir="fonts"
-fi
 
 if [ -z "$(ls -A ./$fontDir)" ]; then
   mv /samplefonts ./$fontDir # only when local

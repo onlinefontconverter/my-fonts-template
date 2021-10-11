@@ -15,16 +15,18 @@ github_token=$1
 };
 fontDir=$2
 
-while [[ "$PWD" != "/" ]] ; do
-  mkdir work && cd work # only when testing local
-done
+#while [[ "$PWD" != "/" ]] ; do
+#  mkdir work && cd work # only when testing local
+#done
 
 workingDir=$(pwd)
+echo "Workdir: $workingDir"
 
 if [ -z "$(ls -A ./$fontDir)" ]; then
   mv /samplefonts ./$fontDir # only when local
 fi
 
+# copy default public files to current dir
 mv /public ./
 
 username=$(git --no-pager log --format=format:'%an' -n 1)

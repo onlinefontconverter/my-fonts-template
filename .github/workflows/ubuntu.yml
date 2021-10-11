@@ -24,8 +24,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
        - name: Make WebFonts
          uses: .github/actions/converter-docker-action

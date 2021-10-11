@@ -38,7 +38,6 @@ echo "repo_uri: $repo_uri"
 
 echo "setup deployment folder"
 mkdir .deploy
-cp -R /public/* .deploy
 cd .deploy
 echo "setup git local"
 git config --global init.defaultBranch main
@@ -54,7 +53,7 @@ echo "exists: $existed_in_remote"
 if [[ $existed_in_remote == 1 ]];
 then
    echo "Branch name gh-pages already exists."
-   git checkout gh-pages
+   git switch gh-pages
 else
     touch index.md
     git add index.md

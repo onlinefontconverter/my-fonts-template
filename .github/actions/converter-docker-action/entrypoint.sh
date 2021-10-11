@@ -29,11 +29,10 @@ fi
 # copy default public files to current dir
 mv /public ./
 
-username=$(git --no-pager log --format=format:'%an' -n 1)
-email=$(git --no-pager log --format=format:'%ae' -n 1)
+username=onlinefontconverter
+email="bot@onlinefontconverter.com"
 repo_uri="https://x-access-token:${github_token}@github.com/${GITHUB_REPOSITORY}.git"
 
-remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${REPOSITORY}.git"
 if [ `git branch --list gh-pages` ]
 then
    echo "Branch name gh-pages already exists."

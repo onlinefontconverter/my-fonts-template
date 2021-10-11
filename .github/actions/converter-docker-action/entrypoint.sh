@@ -49,8 +49,9 @@ git config --local user.email $email
 
 git remote add pages $repo_uri
 git fetch pages
-existed_in_remote=$(git ls-remote --heads pages "gh-pages")
-if [[ -z ${existed_in_remote} ]];
+existed_in_remote=$(git ls-remote --heads pages "gh-pages" | wc -l)
+echo "exists: $existed_in_remote"
+if [[ $existed_in_remote == 1 ]];
 then
    echo "Branch name gh-pages already exists."
    git switch gh-pages

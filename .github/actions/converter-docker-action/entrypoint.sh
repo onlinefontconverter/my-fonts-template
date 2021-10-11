@@ -40,7 +40,6 @@ else
 
    echo "Creating branch gh-pages"
 
-
   echo "Username: $username"
   echo "email: $username"
   echo "repo_uri: $repo_uri"
@@ -50,13 +49,14 @@ else
   mkdir .deploy
   cp -R .github/actions/converter-docker-action/public/* .deploy
   cd .deploy
-  git init .
-  echo "setup credentials"
-  git config --local user.name "GitHub Action"
-  git config --local user.email "action@github.com"
-  git remote add pages $repo_uri
-  echo "pushing"
 
+  echo "setup git local"
+  git init .
+  git config --local user.name $username
+  git config --local user.email $email
+  git remote add pages $repo_uri
+
+  echo "Adding files"
   git add .
   git commit -am "Create gh-pages"
   git branch -M gh-pages

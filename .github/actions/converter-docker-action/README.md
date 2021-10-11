@@ -22,5 +22,5 @@ The time we greeted you.
 
 uses: actions/hello-world-docker-action@v1
 with:
-  github_token: ${{ secrets.GITHUB_TOKEN }}
+  github_token: ${{ secrets.PUBLISHER_TOKEN }}
   fonts_dir: 'fonts'

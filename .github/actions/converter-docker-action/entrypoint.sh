@@ -34,7 +34,7 @@ echo "email: $username"
 echo "repo_uri: $repo_uri"
 
 
-echo "Creating branch gh-pages"
+echo "setup deployment folder"
 mkdir .deploy
 cp -R /public/* .deploy
 cd .deploy
@@ -42,8 +42,10 @@ echo "setup git local"
 git init .
 git config --local user.name $username
 git config --local user.email $email
+git config --local main
+
 git remote add pages $repo_uri
-git fetch
+git fetch pages
 if [ `git branch --list gh-pages` ]
 then
    echo "Branch name gh-pages already exists."

@@ -1,6 +1,6 @@
 # Container image that runs your code
 FROM ubuntu:20.04
-LABEL warting
+LABEL maintainer="Stefan Wärting stefan@warting.se"
 RUN apt update && apt upgrade -y && apt install -y fontforge make ttfautohint eot-utils
 
 # Copies your code file from your action repository to the filesystem path `/` of the container

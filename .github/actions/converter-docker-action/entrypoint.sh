@@ -26,28 +26,21 @@ if [ -z "$(ls -A ./$fontDir)" ]; then
   mv /samplefonts ./$fontDir # only when local
 fi
 
-# copy default public files to current dir
-mv /public ./
-
 username=onlinefontconverter
 email="bot@onlinefontconverter.com"
 repo_uri="https://x-access-token:${github_token}@github.com/${GITHUB_REPOSITORY}.git"
+echo "Username: $username"
+echo "email: $username"
+echo "repo_uri: $repo_uri"
 
 if [ `git branch --list gh-pages` ]
 then
    echo "Branch name gh-pages already exists."
 else
-
-   echo "Creating branch gh-pages"
-
-  echo "Username: $username"
-  echo "email: $username"
-  echo "repo_uri: $repo_uri"
-
-  GIT_REPO_URL=$(git config --get remote.origin.url)
+  echo "Creating branch gh-pages"
 
   mkdir .deploy
-  cp -R .github/actions/converter-docker-action/public/* .deploy
+  cp -R /public/* .deploy
   cd .deploy
 
   echo "setup git local"
@@ -83,3 +76,27 @@ ls -al $fontDir
 mv $fontDir/* ./public
 echo "Files in public:"
 ls -al public
+
+
+
+mkdir .deploy
+cd .deploy
+
+echo "setup git local"
+git init .
+git config --local user.name $username
+git config --local user.email $email
+git remote add pages $repo_uri
+git fetch pages
+git switch gh-pages
+
+cp -R ../.github/actions/converter-docker-action/public/* ./
+
+echo "Adding files"
+git add .
+git commit -am "Update gh-pages"
+git push -u pages gh-pages
+cd ..
+rm -rf .deploy
+
+echo "gh-pages deployed."

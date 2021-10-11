@@ -1,5 +1,6 @@
-#!/bin/sh -l
+#!/bin/bash
 
+set -eu -o pipefail # -x: is for debugging
 
 echo "Push to branch $INPUT_BRANCH";
 [ -z "${INPUT_GITHUB_TOKEN}" ] && {
@@ -35,11 +36,6 @@ then
 else
 
    echo "Creating branch gh-pages"
-  # fail on unset variables and command errors
-  set -eu -o pipefail # -x: is for debugging
-
-  DEFAULT_BRANCH="main"
-
 
 
   echo "Username: $username"

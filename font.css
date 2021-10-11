@@ -1,0 +1,11 @@
+@font-face {
+    font-family:'MyFont-regular';
+    src: url('step3font.eot');
+    src: url('step3font.eot?#iefix') format('embedded-opentype'),
+    url('step3font.woff') format('woff'),
+    url('step3font.ttf') format('truetype'),
+    url('step3font_cleaned.svg#MyFont-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}

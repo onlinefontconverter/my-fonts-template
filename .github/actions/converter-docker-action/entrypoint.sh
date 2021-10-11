@@ -26,8 +26,10 @@ if [ -z "$(ls -A ./$fontDir)" ]; then
   mv /samplefonts ./$fontDir # only when local
 fi
 
-username=onlinefontconverter
-email="bot@onlinefontconverter.com"
+#username=onlinefontconverter
+#email="bot@onlinefontconverter.com"
+username=$(git --no-pager log --format=format:'%an' -n 1)
+email=$(git --no-pager log --format=format:'%ae' -n 1)
 repo_uri="https://x-access-token:${github_token}@github.com/${GITHUB_REPOSITORY}.git"
 echo "Username: $username"
 echo "email: $username"
@@ -39,14 +41,16 @@ mkdir .deploy
 cp -R /public/* .deploy
 cd .deploy
 echo "setup git local"
+git config --global init.defaultBranch main
 git init .
 git config --local user.name $username
 git config --local user.email $email
-git config --local init.defaultBranch main
+
 
 git remote add pages $repo_uri
 git fetch pages
-if [ `git branch --list gh-pages` ]
+existed_in_remote=$(git ls-remote --heads pages "gh-pages")
+if [[ -z ${existed_in_remote} ]]; then
 then
    echo "Branch name gh-pages already exists."
    git switch gh-pages

@@ -42,7 +42,7 @@ echo "setup git local"
 git init .
 git config --local user.name $username
 git config --local user.email $email
-git config --local main
+git config --local init.defaultBranch main
 
 git remote add pages $repo_uri
 git fetch pages

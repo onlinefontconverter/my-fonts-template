@@ -18,7 +18,7 @@ RUN apt update && \
 
 RUN git --version && \
     git config --global init.defaultBranch main && \
-    git config --global init.defaultBranch \
+    git config --global init.defaultBranch
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh

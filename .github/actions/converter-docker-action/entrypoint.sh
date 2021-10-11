@@ -54,7 +54,7 @@ echo "exists: $existed_in_remote"
 if [[ $existed_in_remote == 1 ]];
 then
    echo "Branch name gh-pages already exists."
-   git switch gh-pages
+   git checkout gh-pages
 else
     touch index.md
     git add index.md

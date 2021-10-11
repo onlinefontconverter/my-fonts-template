@@ -23,7 +23,7 @@ fi
 
 username=$(git --no-pager log --format=format:'%an' -n 1)
 email=$(git --no-pager log --format=format:'%ae' -n 1)
-repo_uri="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+repo_uri="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 echo "Username: $username"
 echo "email: $username"

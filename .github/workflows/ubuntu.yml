@@ -29,6 +29,8 @@ jobs:
 
       - name: Create gh-pages if not exist
         run: .github/deploy.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Runs a single command using the runners shell
       # - name: Make WebFonts

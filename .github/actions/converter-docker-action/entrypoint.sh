@@ -55,6 +55,8 @@ else
     git branch -M gh-pages
     git push -u pages gh-pages
     echo "gh-pages deployed."
+    sleep 1m #letting github work for a while
+
 fi
 cd ..
 
